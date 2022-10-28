@@ -1,15 +1,16 @@
 version: "2"
 services:
   app:
-    container_name: app
+    image: is_express_app
+    container_name: thaiFood
     restart: always
-    build: .
     ports:
       - "4000:4000"
     links:
       - mongo
   mongo:
-    container_name: thaiFood
+    container_name: thaiFooddb
     image: mongo
+   
     ports:
       - "27017:27017"
