@@ -1,27 +1,23 @@
 const express = require('express');
 const app = express();
-const mongodb = require('mongodb');
-
+const { MongoClient } = require("mongodb");
+const cors = require('cors')
 const cal = require('./lib/cal');
 const config = require('./db/db')
 
+app.use(cors())
 const PORT = 4000;
-const client = mongodb.MongoClient;
 
-client.connect(config.DB, function(err, db) {
-    if(err) {
-        console.log(err)
-    }
-    var dbo = db.db("thaiFoods");
+app.get('/users', async(req, res) => {
+    const id = parseInt(req.params.id);
+    const client = new MongoClient(config.DB);
+    await client.connect();
+    const users = await client.db('thaiFoods').collection('thaiFoods').find({}).toArray();
+    const user = cal.getMenu(users)
+    await client.close();
+    res.status(200).send(user);
+  })
 
-    dbo.collection("thaiFoods").find({}).toArray(function(err, result) {
-        if (err) throw err;
-        let food = result
-        let y 
-        console.log(cal.getMenu(food,y));
-       
-      });
-    });
 app.get('/', function(req, res) {
     res.json({"hello": "world"});
 });

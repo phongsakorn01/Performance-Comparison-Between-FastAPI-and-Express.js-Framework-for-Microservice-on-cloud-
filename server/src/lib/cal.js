@@ -1,16 +1,16 @@
 
-const getMenu =(x,y) => {
+const getMenu =(x) => {
 let allergy = []
 let noAllergy = []
 let menuUser = ""
 let foods = x
-let inUser = y
-inUser = "no"
+
+
 for (let index = 0; index < foods.length; index++) {
     let food = foods[index]
-    if(inUser == "yes" && food.seafood ==false){
+    if(food.seafood ==false){
         allergy.push(food.name)
-   }if(inUser == "no" && food.seafood == true){
+   }if(food.seafood == true){
         noAllergy.push(food.name)
     }
     
@@ -18,4 +18,7 @@ for (let index = 0; index < foods.length; index++) {
     menuUser = menuUser+allergy+noAllergy
     return menuUser
 }
+
+
+
 exports.getMenu = getMenu;
