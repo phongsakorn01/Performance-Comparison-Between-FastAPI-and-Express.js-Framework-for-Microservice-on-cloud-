@@ -14,8 +14,8 @@ app.get('/users', async(req, res) => {
     await client.connect();
     const users = await client.db('thaiFoods').collection('thaiFoods').find({}).toArray();
     const user = cal.getMenu(users)
-    await client.close();
     res.status(200).send(user);
+    await client.close();
   })
 
 app.get('/', function(req, res) {

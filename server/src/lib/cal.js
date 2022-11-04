@@ -1,21 +1,21 @@
 
 const getMenu =(x) => {
 let allergy = []
-let noAllergy = []
-let menuUser = ""
+let menuUser = []
 let foods = x
 
 
 for (let index = 0; index < foods.length; index++) {
     let food = foods[index]
-    if(food.seafood ==false){
+    if(food.seafood ==false || food.seafood == true){
         allergy.push(food.name)
-   }if(food.seafood == true){
-        noAllergy.push(food.name)
     }
-    
+}   
+for (let index = 0; index < 3; index++) {
+    var item = allergy[Math.floor(Math.random()*allergy.length)];
+    menuUser.push(item)
+   
 }
-    menuUser = menuUser+allergy+noAllergy
     return menuUser
 }
 
