@@ -6,13 +6,10 @@ class Is_djangoSerializer(serializers.ModelSerializer):
  
     class Meta:
         model = is_django
-        fields = ( 'id' ,
+        fields = ('customId',
                   'fname',
                   'lname',
-                  'username',
-                  'email',
+                  'age',
+                  'address',
                   'tel',
-                  'password',
-                  'confirm_password'
-                  
                   )

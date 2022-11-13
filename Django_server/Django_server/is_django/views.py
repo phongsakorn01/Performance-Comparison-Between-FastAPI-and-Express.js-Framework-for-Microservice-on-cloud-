@@ -12,12 +12,14 @@ from rest_framework.decorators import api_view
 
 @api_view(['GET', 'POST', 'DELETE'])
 def is_django_list(request):
+ 
     if request.method == 'GET':
         is_djangos = is_django.objects.all()
         is_djangos_serializer = Is_djangoSerializer(is_djangos, many=True)
         return JsonResponse(is_djangos_serializer.data, safe=False)
         # 'safe=False' for objects serialization
- 
+        
+    
     elif request.method == 'POST':
         django_data = JSONParser().parse(request)
         django_serializer = Is_djangoSerializer(data=django_data)
@@ -25,6 +27,7 @@ def is_django_list(request):
             django_serializer.save()
             return JsonResponse(django_serializer.data, status=status.HTTP_201_CREATED) 
         return JsonResponse(django_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
     
     elif request.method == 'DELETE':
         count = is_django.objects.all().delete()
