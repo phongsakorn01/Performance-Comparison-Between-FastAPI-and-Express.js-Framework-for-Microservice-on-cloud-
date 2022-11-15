@@ -2,18 +2,24 @@ const express = require('express');
 const app = express();
 const cors = require('cors')
 const generate = require('./routes/generate')
-
+require('dotenv').config();
 
 app.use(cors())
-const PORT = 4000;
+const {
+    PORT,
+    DB_URI,
+    SERVER_URI
+} = process.env
+ 
+
 app.use(express.json());
 
-app.use('/users', generate);
+app.use('/main', generate);
 
 app.get('/', function(req, res) {
     res.json({"hello": "world"});
 });
 
-app.listen(PORT, function(){
-    console.log('Your node js server is running on PORT:',PORT);
+app.listen({ port: PORT }, function(){
+    console.log(`Server is ready at ${SERVER_URI}`);
 });

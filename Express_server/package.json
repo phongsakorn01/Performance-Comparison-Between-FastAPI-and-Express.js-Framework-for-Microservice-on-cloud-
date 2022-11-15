@@ -4,19 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src",
-    "build": "node  build && copyfiles package.json builds/",
-    "clean": "rimraf builds"
+    "dev": "nodemon -L ./src "
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.1.3",
-    "copyfiles": "^2.4.1",
     "cors": "^2.8.5",
     "daemon": "^1.1.0",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "mongoose": "^6.7.2",
-    "rimraf": "^3.0.2"
+    "mongoose": "^6.7.2"
   }
 }

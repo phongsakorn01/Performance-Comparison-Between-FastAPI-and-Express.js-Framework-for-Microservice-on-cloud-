@@ -1,5 +1,4 @@
 from typing import Optional
-
 from pydantic import BaseModel, Field
 
 
@@ -13,7 +12,7 @@ class UsersSchema(BaseModel):
 
     class Config:
         users_schema = {
-            "users":  {
+             
             "customId": "1",
             "fname": "phongsakorn",
             "lname": "yaemwong",
@@ -22,12 +21,11 @@ class UsersSchema(BaseModel):
             "tel": "0932912921"
       
     }
-        }
+        
 
 def ResponseModel(data, message):
     return {
-        "data": [data],
-        "code": 200,
+        "user": [data],
         "message": message,
     }
 

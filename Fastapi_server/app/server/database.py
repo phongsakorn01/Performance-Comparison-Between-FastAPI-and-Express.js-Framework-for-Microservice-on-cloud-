@@ -1,10 +1,9 @@
 import motor.motor_asyncio
 from bson.objectid import ObjectId
 from decouple import config
+from config import get_settings
 
-MONGO_DETAILS = "mongodb://localhost:27017/"
-
-client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_DETAILS)
+client = motor.motor_asyncio.AsyncIOMotorClient(get_settings().db_url)
 
 database = client.users_fastapi
 
@@ -28,13 +27,13 @@ async def retrieve_users():
     return display
 
 
-# Add a new student into to the database
+
 async def add_users(users_data: dict) -> dict:
     users = await users_collection.insert_one(users_data)
     new_users = await users_collection.find_one({"_id": users.inserted_id})
     return users_helper(new_users)
 
-# Delete a student from the database
+
 async def delete_users() :
-        await users_collection.delete_many({"customId":"1"})
+        await users_collection.delete_many({})
         return True

@@ -30,8 +30,8 @@ async def delete_users_data():
     deleted_user = await delete_users()
     if deleted_user:
         return ResponseModel(
-            "Student with ID: {} removed".format(deleted_user), "Student deleted successfully"
+            "User : {} removed".format(deleted_user), "User deleted successfully"
         )
     return ErrorResponseModel(
-         "An error occurred", 404, "Student with id {0} doesn't exist".format(deleted_user)
+         "An error occurred", 404, "User with id {0} doesn't exist".format(deleted_user)
     )

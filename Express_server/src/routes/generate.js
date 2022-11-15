@@ -13,7 +13,7 @@ useUnifiedTopology: true }, function(error) {
 });
 
 
-router.post('/create', async(req, res) => {
+router.post('/users', async(req, res) => {
   var users = new Users();
   users.customId = req.body.customId ;
   users.fname = req.body.fname;
@@ -43,7 +43,7 @@ router.get('/users', async(req, res) => {
 });  
 });
 
-router.delete('/users/delete', async(req, res) => {
+router.delete('/users', async(req, res) => {
   Users.deleteMany({}, 
     function(err, data) {
         if(err){
