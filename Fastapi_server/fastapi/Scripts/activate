@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\SSS\Desktop\IS_express\Fastapi_server\fastapi"
+VIRTUAL_ENV="C:\Users\SSS\Desktop\IS_express\Fasrapi_Server\fastapi"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

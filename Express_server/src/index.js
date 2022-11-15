@@ -7,7 +7,6 @@ require('dotenv').config();
 app.use(cors())
 const {
     PORT,
-    DB_URI,
     SERVER_URI
 } = process.env
  

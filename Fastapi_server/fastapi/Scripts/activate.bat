@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\SSS\Desktop\IS_express\Fastapi_server\fastapi
+set VIRTUAL_ENV=C:\Users\SSS\Desktop\IS_express\Fasrapi_Server\fastapi
 
 if not defined PROMPT set PROMPT=$P$G
 

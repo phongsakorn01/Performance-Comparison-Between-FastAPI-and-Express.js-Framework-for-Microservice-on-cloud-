@@ -1,11 +1,12 @@
 const express = require('express');
-const config = require('../db/db')
 const router = express.Router();
 const Users = require("../models/users.model");
 var mongoose=require('mongoose');
+require('dotenv').config();
 mongoose.Promise = global.Promise;
+const DB_URI =process.env
  
-mongoose.connect(config.DB, { useNewUrlParser : true,
+mongoose.connect(DB_URI, { useNewUrlParser : true,
 useUnifiedTopology: true }, function(error) {
     if (error) {
         console.log("Error!" + error);
