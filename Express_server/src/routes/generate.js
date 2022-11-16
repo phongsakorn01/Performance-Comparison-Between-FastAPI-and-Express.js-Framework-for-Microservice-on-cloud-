@@ -4,7 +4,7 @@ const Users = require("../models/users.model");
 var mongoose=require('mongoose');
 require('dotenv').config();
 mongoose.Promise = global.Promise;
-const DB_URI =process.env
+const DB_URI =process.env.DB_URI
  
 mongoose.connect(DB_URI, { useNewUrlParser : true,
 useUnifiedTopology: true }, function(error) {
@@ -34,7 +34,7 @@ router.post('/users', async(req, res) => {
 });
 
 router.get('/users', async(req, res) => {
-  Users.find(function(err, data) {
+  Users.find().limit(50).exec(function(err, data) {
     if(err){
         console.log(err);
     }

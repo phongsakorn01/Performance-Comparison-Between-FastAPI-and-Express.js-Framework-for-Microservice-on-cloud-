@@ -5,7 +5,7 @@ from pydantic import BaseSettings
 from functools import lru_cache
 class Settings(BaseSettings):
     env_name: str = "Local"
-    base_url: str = "http://localhost:8000"
+    base_url: str = "127.0.0.1:8000"
     db_url: str = "mongodb://localhost:27017/"
     class Config:
         env_file = ".env"
