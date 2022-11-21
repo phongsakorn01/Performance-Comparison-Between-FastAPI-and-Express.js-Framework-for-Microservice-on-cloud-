@@ -1,6 +1,6 @@
-from typing import Optional
 from pydantic import BaseModel, Field
 from bson.objectid import ObjectId
+
 class PyObjectId(ObjectId):
     @classmethod
     def __get_validators__(cls):
@@ -24,7 +24,7 @@ class UsersSchema(BaseModel):
     age:   str = Field(...)
     address: str = Field(...)
     tel: str = Field(...)
-
+    
     class Config:
         allow_population_by_field_name = True
         arbitrary_types_allowed = True
@@ -39,13 +39,5 @@ class UsersSchema(BaseModel):
             "tel": "0932912921"
       
     }
+   
         
-
-def ResponseModel(data):
-    return {
-        "user": data,
-    }
-
-
-def ErrorResponseModel(error, code, message):
-    return {"error": error, "code": code, "message": message}

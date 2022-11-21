@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+    nginx:
+        image: nginx
+        restart: always
+        depends_on:
+            - fastapi
+            - express
+        ports:
+            - "80:80"
+
+    fastapi:
+      container_name: fastapi
+      image: "fastapi"
+   
+
+    express:
+      container_name: express
+      image: "express"
+     
+    
+     

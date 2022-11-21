@@ -1,37 +1,33 @@
 from fastapi import APIRouter, Body
 from fastapi.encoders import jsonable_encoder
-from server.database import (
-    add_users,
-    delete_users,
-    retrieve_users
-)
-from server.models.users import (
-    ErrorResponseModel,
-    ResponseModel,
-    UsersSchema,
-)
+import motor.motor_asyncio
+from decouple import config
+from config import get_settings
+from server.models.users import UsersSchema
+
+client = motor.motor_asyncio.AsyncIOMotorClient(get_settings().db_url)
+
+database = client.fastapi
+
+users_collection = database.get_collection("Users")
+
 router = APIRouter()
-@router.post("/", response_description="User data added into the database")
+
+@router.post("/")
 async def add_user_data(user: UsersSchema = Body(...)):
     user = jsonable_encoder(user)
-    new_user = await add_users(user)
-    return ResponseModel(new_user)
+    users = await users_collection.insert_one(user)
+    return "Insert success "
 
-@router.get("/", response_description="users retrieved")
-async def get_users():
-    users = await retrieve_users()
-    if users:
-        return ResponseModel(users)
-    return ResponseModel(users)
+@router.get("/")
+async def retrieve_users():
+    display = []
+    async for user in users_collection.find().limit(50):
+        display.append(user)
+    return display
 
 
-@router.delete("/", response_description="user data deleted from the database")
-async def delete_users_data():
-    deleted_user = await delete_users()
-    if deleted_user:
-        return ResponseModel(
-            "User : {} removed".format(deleted_user)
-        )
-    return ErrorResponseModel(
-         "An error occurred", 404, "User with id {0} doesn't exist".format(deleted_user)
-    )
+@router.delete("/")
+async def delete_users() :
+        await users_collection.delete_many({})
+        return "delete success"
