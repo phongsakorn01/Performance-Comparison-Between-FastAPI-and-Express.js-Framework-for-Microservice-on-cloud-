@@ -29,15 +29,5 @@ class UsersSchema(BaseModel):
         allow_population_by_field_name = True
         arbitrary_types_allowed = True
         json_encoders = {ObjectId: str}
-        users_schema = {
-             
-            "customId": "1",
-            "fname": "phongsakorn",
-            "lname": "yaemwong",
-            "age": "20",
-            "address": "11/21 m.2 tambon test",
-            "tel": "0932912921"
-      
-    }
-   
+        
         

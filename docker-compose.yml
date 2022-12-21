@@ -1,7 +1,7 @@
 version: '3.8'
 services:
     nginx:
-        image: nginx
+        image: phongsakorn/nginx:latest
         restart: always
         depends_on:
             - fastapi
@@ -11,12 +11,14 @@ services:
 
     fastapi:
       container_name: fastapi
-      image: "fastapi"
+      image: phongsakorn/fastapi:latest
+     
+
    
 
     express:
       container_name: express
-      image: "express"
+      image: phongsakorn/express:latest
      
     
      

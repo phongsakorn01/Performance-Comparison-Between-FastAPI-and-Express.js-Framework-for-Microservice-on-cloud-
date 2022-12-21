@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+
+kind: Ingress
+
+metadata:
+
+  name: routing-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    kubernetes.io/ingress.class: nginx
+
+spec:
+  rules:
+   - host: service.backend.com
+     http:
+      paths:
+        - path: /express
+          pathType: Prefix
+          backend:
+            service:
+              name: express
+              port:
+                number: 80
+
+        - path: /fastapi
+          pathType: Prefix
+          backend:
+            service:
+              name: fastapi
+              port:
+                 number: 80

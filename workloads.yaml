@@ -1,0 +1,37 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express
+spec:
+  selector:
+    matchLabels:
+      app: express
+  replicas: 1
+  template: 
+    metadata:
+      labels:
+        app: express
+    spec:
+      containers:
+      - name: express
+        image: phongsakorn/express:latest
+        
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi
+spec:
+  selector:
+    matchLabels:
+      app: fastapi
+  replicas: 1
+  template: 
+    metadata:
+      labels:
+        app: fastapi
+    spec:
+      containers:
+      - name: fastapi
+        image: phongsakorn/fastapi:latest

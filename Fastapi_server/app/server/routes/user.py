@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Body
 from fastapi.encoders import jsonable_encoder
 import motor.motor_asyncio
-from decouple import config
 from config import get_settings
 from server.models.users import UsersSchema
 
