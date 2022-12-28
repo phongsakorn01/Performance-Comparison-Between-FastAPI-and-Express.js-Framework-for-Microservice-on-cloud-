@@ -9,8 +9,6 @@ const DB_URI =process.env.DB_URI
  
 mongoose.connect(DB_URI)
     
-
-
 router.post('/', async(req, res) => {
   var users = new Users();
   users.customId = req.body.customId ;
@@ -19,37 +17,32 @@ router.post('/', async(req, res) => {
   users.age = req.body.age;
   users.address = req.body.address;
   users.tel = req.body.tel;
-  users.save(function(err, data){
-      if(err){
-          console.log(error);
-      }
-      else{
-          res.send("Insert complete");
-      }
-  });
+  try {
+        users.save();
+        res.status(200).json({message : "Insert complete"}) 
+  } catch (error) {
+        res.status(400).json({message: error.message})
+  }
 });
 
 router.get('/', async(req, res) => {
-  Users.find().limit(50).exec(function(err, data) {
-    if(err){
-        console.log(err);
-    }
-    else{
-        res.send(data);
-    }
-});  
+    try {
+        const data = await Users.find().limit(50).sort({customId:-1}).select('-_id')
+        res.status(200).send(data)
+     } catch (error) {
+           res.status(400).json({message: error.message})
+     }
+ 
 });
 
 router.delete('/', async(req, res) => {
-  Users.deleteMany({}, 
-    function(err, data) {
-        if(err){
-            console.log(err);
-        }
-        else{
-            res.send("delete success");
-        }
-    });  
+    try {
+        Users.collection.deleteMany()
+        res.status(200).send({message : "delete complete"})
+        
+     } catch (error) {
+           res.status(400).json({message: error.message})
+     }
 });
 
  module.exports =  router;
