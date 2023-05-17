@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: express
-        image: phongsakorn/express:latest
+        image: phongsakorn/server-express:1.0
         
 ---
 apiVersion: apps/v1
@@ -34,4 +34,4 @@ spec:
     spec:
       containers:
       - name: fastapi
-        image: phongsakorn/fastapi:latest
+        image: phongsakorn/server-fastapi:1.0
