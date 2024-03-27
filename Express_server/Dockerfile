@@ -2,7 +2,7 @@ FROM node:alpine
 
 WORKDIR /app
 
-COPY ./ ./
+COPY ./Express_server ./
 RUN ls /app
 RUN npm install
 
