@@ -3,7 +3,7 @@ FROM node:alpine
 WORKDIR /app
 
 COPY ./ ./
-
+RUN ls /app
 RUN npm install
 
 
